@@ -37,8 +37,10 @@ public class Program
 
 		try
 		{
-			tren.EliminarReserva(raul);
-			Console.WriteLine("El Listado de reservas es" + tren.GetReservas().Count);
+			//tren.EliminarReserva(raul);
+			Console.WriteLine("El Listado de reservas es");
+			//tren.GetReservas().ToList().ForEach(Console.WriteLine);					
+			Console.WriteLine(String.Join(",", tren.GetReservas()));
 		}
 		catch (Exception e)
 		{
