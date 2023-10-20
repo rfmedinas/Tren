@@ -15,6 +15,7 @@ public class Tren
 	private int numEconomicas = 80;
 	private int numEjecutivas = 20;
 	private int numSillasFila = 4;
+	private Persona conductor;
 
 	public Tren(int id)
 	{
@@ -41,6 +42,15 @@ public class Tren
 	public void SetReservas(List<Reserva> reservas)
 	{
 		this.reservas = reservas;
+	}
+	public Persona GetConductor()
+	{
+		return conductor;
+	}
+
+	public void SetConductor( Persona conductor)
+	{
+		this.conductor = conductor;
 	}
 	/**
 	 *Descripcion: Método que crea  el listado de silla  para un tren teniendo en cuenta la Clase  
@@ -165,6 +175,7 @@ public class Tren
 		
 		return 
 			   "{\"id\":\"" + id + "\"," +
+			   "\"conductor\":\"" + conductor + "\"," +
 			   "\"numEconomicas\":\"" + numEconomicas + "\"," +
 			   "\"numEjecutivas\":\"" + numEjecutivas + "\"," +
 			   "\"numSillasFila\":\"" + numSillasFila + "\"," +

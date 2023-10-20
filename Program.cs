@@ -7,6 +7,7 @@ public class Program
 	public static void Main(string[] args)
 	{
 		Tren tren = new Tren(1);
+		tren.SetConductor(new Persona(254, "Pepito Perez")); 
 		Console.WriteLine(tren);
 		Console.WriteLine(tren.CalcularOcupacion());
 		Pasajero raul = new Pasajero(1, "Raúl Medina");
@@ -20,8 +21,9 @@ public class Program
 			Console.WriteLine("error");
 			throw new Exception(e.Message);
 		}
-
-		Pasajero jose = new Pasajero(2, "Jose Gomez");
+		Persona josePersona = new Persona(2, "Jose Gomez");
+		Pasajero jose = new Pasajero(josePersona);
+		
 		try
 		{
 			Reserva reserva = tren.CrearReserva(jose, ClaseSilla.EJECUTIVA, PosicionSilla.VENTANA);
