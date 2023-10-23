@@ -81,7 +81,7 @@ public class Program
 					}
 					else
 					{
-						Console.WriteLine("ID inválido. Intente nuevamente.");
+						Console.WriteLine("ID inválido.Intente nuevamente.");
 					}
 					break;
                 case 5:
