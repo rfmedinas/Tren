@@ -5,7 +5,9 @@ using System.Collections.Generic;
 /** 
  * Autor: Raúl Fernando Medina Sandoval
  * Fecha de Creación: 13/10/2023 
- * Descripción: Representa un tren, con un número determinado de sillas, divididas en clases económica y ejecutiva. 
+ * Fecha de Modificacion: 22/10/2023
+ * * Descripción: Representa un tren, con un número determinado de sillas, divididas en clases económica y ejecutiva. 
+ * * se adicionan las opciones de menu en nel proceso Main
  **/
 public class Tren
 {
