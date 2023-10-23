@@ -52,7 +52,8 @@ public class Program
 						{
 							tren.EliminarReserva(idPasajeroEliminar);
 							Console.WriteLine($"Reserva del pasajero con ID {idPasajeroEliminar} eliminada con éxito.");
-							Console.WriteLine(String.Join(",", tren.GetReservas()));
+                            Console.WriteLine("El Listado de reservas es");
+                            Console.WriteLine(String.Join(",", tren.GetReservas()));
 						}
 						catch (Exception e)
 						{
@@ -90,6 +91,13 @@ public class Program
                     ;
                     break;
                 case 6:
+                    Console.WriteLine("El Listado de reservas es");
+                    Console.WriteLine(String.Join(",", tren.GetReservas()));
+
+                    ;
+                    break;
+              
+                case 7:
 					Console.WriteLine("Saliendo del programa...");
 					break;
 				default:
@@ -108,7 +116,8 @@ public class Program
 		Console.WriteLine("3. Eliminar reserva.");
 		Console.WriteLine("4. Buscar pasajero");
         Console.WriteLine("5. Consultar Ocupación del Tren");
-        Console.WriteLine("6. Salir.");
+        Console.WriteLine("6. Listado de Reservas");
+        Console.WriteLine("7. Salir.");
 
 		if (int.TryParse(Console.ReadLine(), out int opcion))
 		{
