@@ -18,7 +18,9 @@ public class Program
 			{
 				case 1:
 					Console.WriteLine(tren);
-					Console.WriteLine(tren.CalcularOcupacion());
+					Console.WriteLine($"El porcentaje de Ocupación es {tren.CalcularOcupacion() *100 } %");
+                    //Console.WriteLine(tren.CalcularOcupacion());
+					;
 					break;
 				case 2:
 					Console.WriteLine("Ingrese el ID del pasajero:");
@@ -81,7 +83,13 @@ public class Program
 						Console.WriteLine("ID inválido. Intente nuevamente.");
 					}
 					break;
-				case 5:
+                case 5:
+                    
+                    Console.WriteLine($"El porcentaje de Ocupación es {tren.CalcularOcupacion() * 100} %");
+                    
+                    ;
+                    break;
+                case 6:
 					Console.WriteLine("Saliendo del programa...");
 					break;
 				default:
@@ -99,7 +107,8 @@ public class Program
 		Console.WriteLine("2. Crear reserva.");
 		Console.WriteLine("3. Eliminar reserva.");
 		Console.WriteLine("4. Buscar pasajero");
-		Console.WriteLine("5. Salir.");
+        Console.WriteLine("5. Consultar Ocupación del Tren");
+        Console.WriteLine("6. Salir.");
 
 		if (int.TryParse(Console.ReadLine(), out int opcion))
 		{

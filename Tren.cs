@@ -115,37 +115,37 @@ public class Tren
 		}
 		return null;
 	}
-	/**
+    /**
 	 *Descripcion: Se utiliza para eliminar una reserva de una silla determinada. El método acepta el siguiente parámetro:
 	 			* idSilla: Identificador de la silla.
  	 **/
-	public void EliminarReserva(Pasajero pasajero)
-	{
-		Reserva? reservaEliminar = null;
-		foreach (Reserva reserva in reservas)
-		{
-			if (reserva.pasajero != null && reserva.pasajero.id == pasajero.id)
-			{
-				reservaEliminar = reserva;
-				break;
-			}
-		}
+    public void EliminarReserva(int idPasajero)
+    {
+        Reserva? reservaEliminar = null;
+        foreach (Reserva reserva in reservas)
+        {
+            if (reserva.pasajero != null && reserva.pasajero.id == idPasajero)
+            {
+                reservaEliminar = reserva;
+                break;
+            }
+        }
 
-		if (reservaEliminar != null)
-		{
-			reservaEliminar.silla.ocupada = false;
-			reservas.Remove(reservaEliminar);
-		}
-		else
-		{
-			throw new Exception("El pasajero no tiene Reserva");
-		}
-	}
-	/**
+        if (reservaEliminar != null)
+        {
+            reservaEliminar.silla.ocupada = false;
+            reservas.Remove(reservaEliminar);
+        }
+        else
+        {
+            throw new Exception("El pasajero no tiene Reserva");
+        }
+    }
+    /**
 	* Descripcion: Se utiliza para buscar un pasajero en una silla determinada. El método acepta el siguiente parámetro:
 				* idPasajero: Identificador del pasajero.
  	 **/
-	public Reserva BuscarPasajero(int id)
+    public Reserva BuscarPasajero(int id)
 	{
 		foreach (Reserva reserva in reservas)
 		{
@@ -188,14 +188,4 @@ public class Tren
 			   "}";
 
 	}
-
-    internal int GetNextId()
-    {
-        throw new NotImplementedException();
-    }
-
-    internal void EliminarReserva(int idPasajeroEliminar)
-    {
-        throw new NotImplementedException();
-    }
-}
+ }
