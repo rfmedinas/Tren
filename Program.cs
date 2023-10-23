@@ -7,73 +7,107 @@ public class Program
 	public static void Main(string[] args)
 	{
 		Tren tren = new Tren(1);
-		tren.SetConductor(new Persona(254, "Pepito Perez")); 
-		Console.WriteLine(tren);
-		Console.WriteLine(tren.CalcularOcupacion());
-		Pasajero raul = new Pasajero(1, "Raúl Medina");
-		try
-		{
-			Reserva reserva = tren.CrearReserva(pasajero: raul, ClaseSilla.EJECUTIVA, PosicionSilla.PASILLO);
-			Console.WriteLine($"La reserva Asignada es :{reserva}");
-		}
-		catch (Exception e)
-		{
-			Console.WriteLine("error");
-			throw new Exception(e.Message);
-		}
-		Persona josePersona = new Persona(2, "Jose Gomez");
-		Pasajero jose = new Pasajero(josePersona);
-		
-		try
-		{
-			Reserva reserva = tren.CrearReserva(jose, ClaseSilla.EJECUTIVA, PosicionSilla.VENTANA);
-			Console.WriteLine($"La reserva Asignada es :{reserva}");
-		}
-		catch (Exception e)
-		{
-			Console.WriteLine("error");
-			throw new Exception(e.Message);
-		}
+		tren.SetConductor(new Persona(99999, "Juan Perez"));
+		int opcion;
 
-		Console.WriteLine(tren.CalcularOcupacion());
+		do
+		{
+			opcion = MostrarMenu();
 
-		try
-		{
-			//tren.EliminarReserva(raul);
-			Console.WriteLine("El Listado de reservas es");
-			//tren.GetReservas().ToList().ForEach(Console.WriteLine);					
-			Console.WriteLine(String.Join(",", tren.GetReservas()));
-		}
-		catch (Exception e)
-		{
-			throw new Exception(e.Message);
-		}
+			switch (opcion)
+			{
+				case 1:
+					Console.WriteLine(tren);
+					Console.WriteLine(tren.CalcularOcupacion());
+					break;
+				case 2:
+					Console.WriteLine("Ingrese el ID del pasajero:");
+					if (int.TryParse(Console.ReadLine(), out int idPasajero) && idPasajero > 0)
+					{
+						Console.WriteLine("Ingrese el nombre del pasajero:");
+						string nombrePasajero = Console.ReadLine();
+						Pasajero nuevoPasajero = new Pasajero(idPasajero, nombrePasajero);
+						try
+						{
+							Reserva reserva = tren.CrearReserva(nuevoPasajero, ClaseSilla.EJECUTIVA, PosicionSilla.PASILLO);
+							Console.WriteLine($"La reserva Asignada es :{reserva}");
+						}
+						catch (Exception e)
+						{
+							Console.WriteLine($"Error: {e.Message}");
+						}
+					}
+					else
+					{
+						Console.WriteLine("ID inválido. Intente nuevamente.");
+					}
+					break;
+				case 3:
+					Console.WriteLine("Ingrese el ID del pasajero a eliminar:");
+					if (int.TryParse(Console.ReadLine(), out int idPasajeroEliminar))
+					{
+						try
+						{
+							tren.EliminarReserva(idPasajeroEliminar);
+							Console.WriteLine($"Reserva del pasajero con ID {idPasajeroEliminar} eliminada con éxito.");
+							Console.WriteLine(String.Join(",", tren.GetReservas()));
+						}
+						catch (Exception e)
+						{
+							Console.WriteLine($"Error: {e.Message}");
+						}
+					}
+					else
+					{
+						Console.WriteLine("ID inválido. Intente nuevamente.");
+					}
+					break;
+				case 4:
+					Console.WriteLine("Ingrese el ID del pasajero a buscar:");
+					if (int.TryParse(Console.ReadLine(), out int idPasajeroBuscar))
+					{
+						try
+						{
+							Reserva reservaEncontrada = tren.BuscarPasajero(idPasajeroBuscar);
+							Console.WriteLine(reservaEncontrada);
+						}
+						catch (Exception e)
+						{
+							Console.WriteLine($"Error: {e.Message}");
+						}
+					}
+					else
+					{
+						Console.WriteLine("ID inválido. Intente nuevamente.");
+					}
+					break;
+				case 5:
+					Console.WriteLine("Saliendo del programa...");
+					break;
+				default:
+					Console.WriteLine("Opción inválida. Por favor, seleccione una opción válida.");
+					break;
+			}
 
-		Console.WriteLine(tren.CalcularOcupacion());
+		} while (opcion != 5);
+	}
 
-		Pasajero angela = new Pasajero(3, "Angela Pedraza");
-		try
-		{
-			Reserva reserva = tren.CrearReserva(angela, ClaseSilla.EJECUTIVA, PosicionSilla.VENTANA);
-			Console.WriteLine($"La Reserva Asignada es :{reserva}");
-		}
-		catch (Exception e)
-		{
-			Console.WriteLine("error");
-			throw new Exception(e.Message);
-		}
+	public static int MostrarMenu()
+	{
+		Console.WriteLine("Seleccione una opción:");
+		Console.WriteLine("1. Mostrar información del tren y ocupación.");
+		Console.WriteLine("2. Crear reserva.");
+		Console.WriteLine("3. Eliminar reserva.");
+		Console.WriteLine("4. Buscar pasajero");
+		Console.WriteLine("5. Salir.");
 
-		Console.WriteLine(tren);
-		try
+		if (int.TryParse(Console.ReadLine(), out int opcion))
 		{
-			Reserva reservaEncontrada = tren.BuscarPasajero(2);
-			Console.WriteLine(reservaEncontrada);
-			reservaEncontrada = tren.ConsultarReserva(reservaEncontrada.id.ToString());
-			Console.WriteLine(reservaEncontrada);
+			return opcion;
 		}
-		catch (Exception e)
+		else
 		{
-			throw new Exception(e.Message);
+			return -1; // Valor inválido
 		}
 	}
 }

@@ -186,4 +186,14 @@ public class Tren
 			   "}";
 
 	}
+
+    internal int GetNextId()
+    {
+        throw new NotImplementedException();
+    }
+
+    internal void EliminarReserva(int idPasajeroEliminar)
+    {
+        throw new NotImplementedException();
+    }
 }
